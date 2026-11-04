@@ -19,6 +19,7 @@ CREATE TABLE products (
     buying_price NUMERIC(20, 2) NOT NULL CHECK (buying_price >= 0),
     selling_price NUMERIC(20, 2) NOT NULL CHECK (selling_price >= 0)
 );
+
 CREATE TABLE stock (
     id SERIAL PRIMARY KEY,
     pid INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
@@ -55,3 +56,50 @@ CREATE TABLE users (
 
 
 *ip addresses and domain names*
+
+*IP ADDRESS* --> A number that uniquely identifies a device on a network 
+  --> two types : ipv4 and ipv6 
+  ipv4 example --> 202.181.101.100 
+*domain name* -> a human friendly name for an ip address e.g. https://www.google.com
+
+*Internet* --> global interconnection of devices world wide
+*www* --> a service that lets you connect to the internet via a browser
+
+*http* -> hypertext transafer protocol 
+      -> standard communication protocol for the browser
+      -> sends data as raw text
+
+*https* -> hypertext transafer protocol secure
+        -> same as http but now data is encrypted 
+        -> switch from http to https using an ssl / tls certificate 
+
+plan ---> develop ---> test ---> deploy apps(cloud)
+
+ipv4 --> 2^32
+https://meet.google.com/meet/dsh-idtb-oqb
+
+person A -------> 10000 ------> Netflix
+
+person A ------> 10000-> encrypted --> s00dj99eh89de993hd89sjhds99sh ---> Netflix ---> decrypt back to 10000 
+
+127.0.0.1 ---> ip address of your local device
+localhost ---> domain name for 127.0.0.1
+
+
+
+
+*How to perform db operations with psycopg2*
+*cur* -> an object that is used to perfom db operations(select, insert, update , delete)
+*cur.execute()* -> a function / method for executing sql queries
+*cur.fetchall()* ---> retrieves or fetches data from Postgres to Python
+
+---> data fetched from cur.fetchall() is retrieved as a list of tuples
+
+*list* ---> entire dataset
+*tuple* ---> a single row of data
+
+(1, 'milk', Decimal('50.00'), Decimal('60.00'))
+
+
+*conn.commit()* ---> save my data / changes in the database
+
