@@ -101,5 +101,10 @@ localhost ---> domain name for 127.0.0.1
 (1, 'milk', Decimal('50.00'), Decimal('60.00'))
 
 
-*conn.commit()* ---> save my data / changes in the database
+*conn.commit()* ---> save my data / changes in the database 
+
+
+*task*
+---> insert 2 sales data using psycopg2
+---> fetch that sales data and display it on your terminal w/psycopg2
 
