@@ -13,20 +13,53 @@ def get_products():
     return products_data
 
 
-print(10)
-
-
-def insert_products():
-    cur.execute("insert into products(name,buying_price,selling_price)values('asus laptop',40000,50000)") 
+def insert_products(prod_details):
+    cur.execute("insert into products(name,buying_price,selling_price)values(%s,%s,%s)",prod_details) 
     conn.commit()
 
 
-insert_products()
-products_data = get_products()
-print(products_data) 
+# product1 = ('iphone 14',50000,60000)
+# product2 = ('rice',200,250)
+# insert_products(product1)
+# insert_products(product2)
+
+
+# products_data = get_products()
+# print(products_data) 
+
+
+def fetch_sales():
+    cur.execute("select * from sales")
+    sales_data = cur.fetchall()
+    return sales_data
+
+
+def insert_sales(sale_details):
+    cur.execute("insert into sales(pid,quantity)values(%s,%s)",sale_details)
+    conn.commit()
+
+
+# sale1 = (2,45)
+# sale2 = (1,10)
+# insert_sales(sale1)
+# insert_sales(sale2)
+
+# sales_data = fetch_sales()
+# print(sales_data)
 
 
 
+def get_sales_per_product():
+    cur.execute(
+    """
+        select products.name as p_name,sum(products.selling_price * sales.quantity) as total_sales
+        from sales join products on products.id = sales.pid group by p_name;
+    """)
+    sales_per_product = cur.fetchall()
+    return sales_per_product
 
+
+sales_per_product = get_sales_per_product()
+print(sales_per_product)
 
 

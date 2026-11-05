@@ -26,12 +26,16 @@ CREATE TABLE stock (
     stock_quantity INTEGER NOT NULL CHECK (stock_quantity >= 0),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
 CREATE TABLE sales (
     id SERIAL PRIMARY KEY,
     pid INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
     quantity INTEGER NOT NULL CHECK (quantity > 0),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     full_name VARCHAR(255) NOT NULL,
@@ -107,4 +111,44 @@ localhost ---> domain name for 127.0.0.1
 *task*
 ---> insert 2 sales data using psycopg2
 ---> fetch that sales data and display it on your terminal w/psycopg2
+
+
+---> making insert functions reusable : let it take parameters
+
+let the insert functions take a single param of a tuple -> the tuple then contains prod details / sale details
+
+%s -> placeholder for a column
+--> the no of placeholders must match the no of columns specified
+
+
+*fetching complex data*
+--> fetching data from more than one table
+
+*sales per product*
+--> selling_price(products)
+--> quantity (sales)
+--> name(products)
+ selling_price * quantity per product name
+
+  select products.name as p_name,sum(products.selling_price * sales.quantity) as total_sales
+  from sales join products on products.id = sales.pid group by p_name;
+
+*multiline strings*
+---> allow us to write strings that traverse more than one line
+---> they use tripple opening and closing quotes(single or double)
+"""  """  or '''   '''
+
+
+
+
+
+
+*Task*
+1.write a function to fetch stock data with psycopg2
+2.write a function that can insert any stock data using parameters with psycopg2
+3.write functions that use psycopg2 to get the following data:
+    -> *sales per day*
+    ->  *profit per product*
+    -> *profit per day*
+
 
