@@ -311,6 +311,22 @@ main.py
 
 
 
+*template inheritance*
+--> Is the process of building html pages in flask by first identifying common features across all pages
+then having those common features in one template called base / parent , subsequently all other html pages inherit 
+from the base template and by extension they inherit the common features e.g. navbar , footer
+
+--> Template inheritance is enabled by a Flask feature called  *Jinja*
+
+
+*block title* ---> defines a block within which we get to pass the unique title of a page
+*block content* --> defines a block within which we get to pass the unique content of each page
 
 
 
+*{% extends 'base.html' %}* ----> inherit features from base template
+
+
+*task*
+---> Apply template inheritance across all html pages
+----> create a real navbar and footer for base.html
