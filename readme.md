@@ -329,4 +329,42 @@ from the base template and by extension they inherit the common features e.g. na
 
 *task*
 ---> Apply template inheritance across all html pages
-----> create a real navbar and footer for base.html
+----> create a real navbar and footer for base.html 
+
+
+*DISPLAYING DATA FROM POSTGRES IN HTML*
+*steps*
+1. Ensure you have a function that fetches the data required from Postgres
+2. Import that function to your main file to reuse it
+3. Declare a variable that calls the function in the route where you intend to display your data
+4. Pass that variable in the render_template() function
+5. Go to the intended html page and pass that variable in Jinja to display your data
+6. Once you can see your data in raw list/tuple format , structure it in a table (use Jinja)
+
+
+*Jinja*
+---> a templating engine integrated with flask to render dynamic html pages 
+---> It is just simply syntax used depending on whether you are are using variables or control structures
+
+ *control structures in Python*
+ --> The building blocks of Python programming
+
+1. Sequence 
+    ---> the order in which Python executes programs
+    ---> top to bottom , left to right
+2. Selection
+    ---> decision making in Python
+    ---> conditinal statements : if-else, switch
+3. Repitition
+   ---> executing code repeatedly
+   ---> loops : for , while
+
+   *Jinja Syntax*
+1.With Variables
+   ---> use {{ }}
+
+
+
+*TASK*
+1. Display your sales and stock data in the sales and stock pages respectively using Jinja 
+2. Finish up on building your navbar and footer in base.html ( Bootsrap is allowed) 

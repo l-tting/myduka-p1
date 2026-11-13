@@ -1,14 +1,15 @@
+def sum(x,y):
+    return x + y
+
+
+sum1 = sum(1,2)
+sum2 = sum(2,3)
+
+
+
 x = 5
 
-x = 10
-
-print(x)
+y = 12
 
 
-def test():
-    print("Test")
-
-def test():
-    print("No test")
-
-test()
+ 

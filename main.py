@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from database import get_products
 
 #flask instance
 app = Flask(__name__)
@@ -6,13 +7,15 @@ app = Flask(__name__)
 
 @app.route('/') #decorator func
 def home(): #view func
-    return render_template('index.html')
+    name = "Jane"
+    return render_template('index.html',)
 
 
 
 @app.route('/products')
 def products():
-    return render_template('products.html')
+    products_data = get_products()
+    return render_template('products.html',products_data = products_data)
 
 
 

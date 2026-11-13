@@ -18,15 +18,6 @@ def insert_products(prod_details):
     conn.commit()
 
 
-# product1 = ('iphone 14',50000,60000)
-# product2 = ('rice',200,250)
-# insert_products(product1)
-# insert_products(product2)
-
-
-# products_data = get_products()
-# print(products_data) 
-
 
 def fetch_sales():
     cur.execute("select * from sales")
@@ -39,13 +30,6 @@ def insert_sales(sale_details):
     conn.commit()
 
 
-# sale1 = (2,45)
-# sale2 = (1,10)
-# insert_sales(sale1)
-# insert_sales(sale2)
-
-# sales_data = fetch_sales()
-# print(sales_data)
 
 
 
@@ -57,10 +41,6 @@ def get_sales_per_product():
     """)
     sales_per_product = cur.fetchall()
     return sales_per_product
-
-
-sales_per_product = get_sales_per_product()
-print(sales_per_product)
 
 
 
