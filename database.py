@@ -13,6 +13,8 @@ def get_products():
     return products_data
 
 
+
+
 def insert_products(prod_details):
     cur.execute("insert into products(name,buying_price,selling_price)values(%s,%s,%s)",prod_details) 
     conn.commit()

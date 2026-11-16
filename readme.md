@@ -363,8 +363,20 @@ from the base template and by extension they inherit the common features e.g. na
 1.With Variables
    ---> use {{ }}
 
+2.With Control structures:
+    ----> use {% %} 
+    ---> it has to have a starting point and ending point
+
+    {% for .... %}     {% endfor %}
+    {% if .... %}     {% endif %}
+    {% while .... %}     {% while %}
+
 
 
 *TASK*
 1. Display your sales and stock data in the sales and stock pages respectively using Jinja 
 2. Finish up on building your navbar and footer in base.html ( Bootsrap is allowed) 
+
+
+*TASK*
+-->display your sales and stock data in a datatable

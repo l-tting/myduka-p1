@@ -1,15 +1,12 @@
-def sum(x,y):
-    return x + y
+from database import get_products
 
 
-sum1 = sum(1,2)
-sum2 = sum(2,3)
+products = get_products()
+# print(products)
+
+# x = (1, 'milk', Decimal('50.00'), Decimal('60.00')),
 
 
 
-x = 5
-
-y = 12
-
-
- 
+for i in products:
+    print(i[0])
