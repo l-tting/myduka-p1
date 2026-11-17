@@ -379,4 +379,53 @@ from the base template and by extension they inherit the common features e.g. na
 
 
 *TASK*
--->display your sales and stock data in a datatable
+-->display your sales and stock data in a datatable 
+
+
+*POSTING DATA IN FLASK*
+--> These are the steps required to post data in flask:
+
+1. Provide a user with a form (could be inside a modal) containing product fields to fill
+2. User fills the form and submits form data to a route in flask
+3. Flask extracts form data using the request object which has access to some methods
+   -> request object 
+    *request.method* - used to identify the method specified in the form
+    *request.form* -uses the key specified in the name attribute to access and extract form data
+ 
+4. Once extracted we have the fields/ / data in a tuple
+5. Import and call insert_products() to insert new product
+6. Notify user of successful addition and redirect the user
+
+
+*form checklist*
+---> everything my form requires for it to post data:
+1. method attribute
+   --> Method specifies what a server can with data / resources
+2. action attribute ---> specifies the route in which the form data is to be processed / submitted to
+    e.g. /add_products
+3. name attribute
+   *N/B* ---> form data from the form is sent in form of key-value pairs
+      --> key is the name attribute
+4. input type  
+5. button --> type submit
+
+
+*http methods*
+1. GET  -> move data from a server / db to an interface
+    e.g. displaying products in the interface
+2. POST ---> move data / resource  from an interface to a server
+    e.g. tweeting, posting on instagram . adding products , making sales
+3. PUT --> update an existing resource / data
+    e.g. changing profile pic, changing username / password 
+4. DELETE --> gettting rid of a resource / data 
+   e.g. deleting ig / twitter account , deleting products
+
+
+
+   eggs -> name
+   17 -> bp
+   20 -> sp
+
+   'p_name' : eggs
+   'bp' : 17
+   'sp' : 20

@@ -1,5 +1,5 @@
-from flask import Flask, render_template
-from database import get_products
+from flask import Flask, render_template, request
+from database import get_products, fetch_sales
 
 #flask instance
 app = Flask(__name__)
@@ -18,10 +18,19 @@ def products():
     return render_template('products.html',products_data = products_data)
 
 
+@app.route('/add_products',methods=['GET','POST'])
+def add_products():
+    if request.method == "POST":
+        product_name = request.form['p_name']
+        buying_price = request.form['b_price']
+        selling_price = request.form['s_price'] 
+
+
 
 @app.route('/sales')
 def sales():
-    return render_template('sales.html')
+    sales_data = fetch_sales()
+    return render_template('sales.html',sales_data = sales_data)
 
 
 
