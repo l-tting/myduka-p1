@@ -429,3 +429,36 @@ from the base template and by extension they inherit the common features e.g. na
    'p_name' : eggs
    'bp' : 17
    'sp' : 20
+
+
+   ---> INSTAGRAM <----
+View photos
+Watch stories 
+Watch reels 
+Get messaages
+
+
+Post photos and videos 
+Post reels 
+Post stories
+Message friends
+
+
+'p_name': milk
+'b_price': 60
+'s_price': 70
+
+
+*redirection*
+---> moving a user from one resource to another 
+
+---> redirection is enabled by the *redirect()* and *url_for()* functions
+
+*redirect(url_for('   '))*
+
+url_for() ---> takes name of view function as an argument
+
+
+*TASK*
+1. Get a sales and stock form and embed them in modals in their respective modals
+2. Create post operations for both sales and stock

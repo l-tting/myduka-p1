@@ -19,6 +19,8 @@ def insert_products(prod_details):
     cur.execute("insert into products(name,buying_price,selling_price)values(%s,%s,%s)",prod_details) 
     conn.commit()
 
+product1 = ('milk',60,70)
+insert_products(product1)
 
 
 def fetch_sales():
@@ -30,8 +32,6 @@ def fetch_sales():
 def insert_sales(sale_details):
     cur.execute("insert into sales(pid,quantity)values(%s,%s)",sale_details)
     conn.commit()
-
-
 
 
 
