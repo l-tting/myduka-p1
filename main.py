@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request, redirect,url_for
-from database import get_products, fetch_sales, insert_products
+from flask import Flask, render_template, request, redirect,url_for,flash
+from database import get_products, fetch_sales, insert_products,insert_sales,get_profit_per_day,get_profit_per_product,get_sales_per_day,get_sales_per_product
 
 #flask instance
 app = Flask(__name__)
+
+app.secret_key = '00emnd03ii09fj300wjdj92djjffkfkkf'
 
 
 @app.route('/') #decorator func
@@ -27,10 +29,9 @@ def add_products():
 
         new_product = (product_name,buying_price,selling_price)
         insert_products(new_product)
-        print("Products added successfully")
+        flash("Products added successfully" ,'success')
     return redirect(url_for('products'))
     
-
 
 
 
@@ -49,7 +50,29 @@ def stock():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')
+    
+
+    product_sales = get_sales_per_product()
+    daily_sales = get_sales_per_day()
+
+    product_profit = get_profit_per_product()
+    daily_profit = get_profit_per_day()
+
+    product_names = [i[0] for i in product_sales]
+    sales_p = [ float(i[1]) for i in product_sales]
+    profit_p = [float(i[1]) for i in product_profit]
+
+
+    days = [ str(i[0]) for i in daily_sales ]
+    sales_day = [ float(i[1]) for i in daily_sales ]
+    profit_day = [ float(i[1]) for i in daily_profit ]
+    
+    return render_template('dashboard.html',
+        product_names = product_names ,sales_p = sales_p, profit_p = profit_p,
+        days= days, sales_day = sales_day, profit_day = profit_day                 
+                           )
+
+
 
 
 

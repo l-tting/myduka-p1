@@ -462,3 +462,40 @@ url_for() ---> takes name of view function as an argument
 *TASK*
 1. Get a sales and stock form and embed them in modals in their respective modals
 2. Create post operations for both sales and stock
+
+
+*how to make purchases*
+*flash messaging*
+--> One time notifications to the user based on some action 
+---> these flash messages are stores in a session cookie(in the browser)
+---> flash messages are made up of 2 parts:
+1.Message --> the message itself e.g. Products added successfully
+2.Message category ---> the type of message
+
+--> success
+--> danger
+--> warning
+--> info
+
+secure messages using a *secret key*
+
+
+
+*DASHBOARD*
+---> DATA VISUALIZATION <--- 
+---> charts: line & bar charts
+
+line chart --> sales and profit per day
+    x axis  : day
+    y axis  : sales and profit
+bar chart ---> sales and profit per product
+    x axis : product names
+    y axis : sales and profit
+
+
+    sales per day
+    profit per day
+
+
+*list comprehension*
+--> a shorthand for looping through items and appendng them to a list
