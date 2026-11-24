@@ -1,8 +1,14 @@
 from flask import Flask, render_template, request, redirect,url_for,flash
-from database import get_products, fetch_sales, insert_products,insert_sales,get_profit_per_day,get_profit_per_product,get_sales_per_day,get_sales_per_product
+from database import get_products, fetch_sales, insert_products,insert_sales,get_profit_per_day,get_profit_per_product,get_sales_per_day,get_sales_per_product,insert_user,check_user_exists
+from flask_bcrypt import  Bcrypt
+
 
 #flask instance
 app = Flask(__name__)
+
+#bcrypt instance
+bcrypt = Bcrypt(app)
+
 
 app.secret_key = '00emnd03ii09fj300wjdj92djjffkfkkf'
 
@@ -76,14 +82,52 @@ def dashboard():
 
 
 
-@app.route('/register')
+@app.route('/register',methods=['GET','POST'])
 def register():
+    if request.method == "POST":
+
+        full_name = request.form['name']
+        email = request.form['email']
+        phone = request.form['phone']
+        password = request.form['password']
+
+        existing_user = check_user_exists(email)
+
+        if existing_user :
+            flash("User already exists,login instead",'danger')
+            return redirect(url_for('login'))
+        else:
+            hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+            new_user = (full_name,email,phone,hashed_password)
+            insert_user(new_user)
+            flash("User registered succesfully",'success')
+            return redirect(url_for('login'))
+
     return render_template('register.html')
 
 
 
-@app.route('/login')
+@app.route('/login',methods=['GET','POST'])
 def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        existing_user = check_user_exists(email) 
+
+        if not existing_user:
+            flash("User with this email doesn't exist,register instead",'danger')
+            return redirect(url_for('register'))
+        else:
+            check_password = bcrypt.check_password_hash(existing_user[-1],password)
+            if check_password:
+                flash("Logged in successfully",'success')
+                redirect(url_for('dashboard'))
+            else:
+                flash("Incorrect password ,try again",'danger')
+                return redirect(url_for('login'))
+
+
     return render_template('login.html')
 
 

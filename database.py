@@ -35,6 +35,7 @@ def insert_sales(sale_details):
 
 
 
+
 def get_sales_per_product():
     cur.execute(
     """
@@ -75,5 +76,24 @@ def get_profit_per_day():
     """)
     profit_per_day = cur.fetchall()
     return profit_per_day
+
+
+
+def check_user_exists(email):
+    cur.execute('select * from users where users.email = %s',(email,))
+    user = cur.fetchone()
+    return user
+
+
+user = check_user_exists('janedoe@gmail.com')
+print(user)
+
+# (100) --> 100
+# (100,) --> a tuple with a single value of 100
+
+
+def insert_user(user_details):
+    cur.execute("insert into users(full_name,email,phone_number,password)values(%s,%s,%s,%s)",user_details)
+    conn.commit()
 
 

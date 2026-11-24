@@ -499,3 +499,61 @@ bar chart ---> sales and profit per product
 
 *list comprehension*
 --> a shorthand for looping through items and appendng them to a list
+
+
+*AUTHENTICAATION*
+*Register and Login*
+*Registration workflow*
+1. User is provided with a registration form to fill
+2. User fills their credentials e.g name, email,password and submits the form to the register route
+3. User data is extracted by request object using request.form method
+4. Check whether user exists using email  -> write check_user()
+5. If user exists , prevent double registration and suggest they login instead 
+6. If user doesn't exist, hash their password and insert user 
+7. Flash successful registration and redirect to login
+
+*Login Workflow*
+1. User is provided with a login form
+2. User fills form(email and password) and submits it to login route
+3. User data is extrcted using request object(request.form) 
+4. Check that the user exists 
+5. If user doesnt exist, suggest they register instead
+6. If user exists , check for correct password 
+7. If password is incorrect, notify user
+8. If password is correct , flash successful login, store user data in session and redirect to dashboard
+
+
+
+
+*fetchall()* ---> returns a list of tuples
+*fetchone()* ---> returns a single tuple
+
+
+*PASSWORD HASHING*
+--> Hashing: the process of converting plain text data into complex formats that are not easy to decipher 
+
+Abc@123 ----> 00ejd99wjjd99wjd99wjd9dud
+
+---> Hashing always reproduces the same value
+*rainbow table attacks* ---> is an attack where a hacker has a table(rainbow table) that has all common texts /passwords and their hashed values
+*salting* -> adding random text to a password before hashing it so that the resulting hash becomes more complex
+
+Abc@123  + 002jd992wj8dhd = Abc@123002jd992wj8dhd ---> w003j9r998whud883888duduedudu8uduud
+
+
+
+*N/B* ---> Hashing is a one way function
+   ---> if you hash Abc@123 to 992jjd9ejd99dic9ci , you cannot unhash 992jjd9ejd99dic9ci to get back Abc@123
+
+   --> To compare passwords, yoou need to hash the password from the form with the same salt and compare the two hashes
+
+
+
+sender  ---> document A ---> hash document A --> 1234 ----> receiver --> document A ---> hash it ---> 
+
+
+pip install flask_bcrypt
+
+
+*session*
+*route and navbar protection*
