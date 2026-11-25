@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect,url_for,flash
+from flask import Flask, render_template, request, redirect,url_for,flash,session 
 from database import get_products, fetch_sales, insert_products,insert_sales,get_profit_per_day,get_profit_per_product,get_sales_per_day,get_sales_per_product,insert_user,check_user_exists
 from flask_bcrypt import  Bcrypt
+from functools import wraps
 
 
 #flask instance
@@ -12,18 +13,31 @@ bcrypt = Bcrypt(app)
 
 app.secret_key = '00emnd03ii09fj300wjdj92djjffkfkkf'
 
-
 @app.route('/') #decorator func
 def home(): #view func
     name = "Jane"
     return render_template('index.html',)
 
 
+def login_required(f):
+    @wraps(f)
+    def protected(*args,**kwargs):
+        if 'email' not in session:
+            return redirect(url_for('login'))
+        return f(*args,**kwargs)
+    return protected
+
 
 @app.route('/products') 
-def products():
+@login_required
+def products(x,y):
+
     products_data = get_products()
     return render_template('products.html',products_data = products_data)
+
+
+
+
 
 
 @app.route('/add_products',methods=['GET','POST'])
@@ -42,19 +56,23 @@ def add_products():
 
 
 @app.route('/sales')
+@login_required
 def sales():
+    
     sales_data = fetch_sales()
     return render_template('sales.html',sales_data = sales_data)
 
 
 
 @app.route('/stock')
+@login_required
 def stock():
     return render_template('stock.html')
 
 
 
 @app.route('/dashboard')
+@login_required
 def dashboard():
     
 
@@ -121,14 +139,21 @@ def login():
         else:
             check_password = bcrypt.check_password_hash(existing_user[-1],password)
             if check_password:
+                session['email'] = email
                 flash("Logged in successfully",'success')
-                redirect(url_for('dashboard'))
+                return redirect(url_for('dashboard'))
             else:
                 flash("Incorrect password ,try again",'danger')
                 return redirect(url_for('login'))
 
-
     return render_template('login.html')
+
+
+@app.route('/logout')
+def logout():
+    session.pop('email',None)
+    flash('Logged out successfully','success')
+    return redirect(url_for('login'))
 
 
 

@@ -540,11 +540,8 @@ Abc@123 ----> 00ejd99wjjd99wjd99wjd9dud
 
 Abc@123  + 002jd992wj8dhd = Abc@123002jd992wj8dhd ---> w003j9r998whud883888duduedudu8uduud
 
-
-
 *N/B* ---> Hashing is a one way function
    ---> if you hash Abc@123 to 992jjd9ejd99dic9ci , you cannot unhash 992jjd9ejd99dic9ci to get back Abc@123
-
    --> To compare passwords, yoou need to hash the password from the form with the same salt and compare the two hashes
 
 
@@ -556,4 +553,13 @@ pip install flask_bcrypt
 
 
 *session*
+--> Is a way to store user data across multiple http requests 
+--> http is stateless : it doesnt remember any details of a request after execution
+
+client(browser)-----> http request  -----> Netflix servers
+---> stores data in key value pairs
+---> once session data is captured, we store it in a session cookie
 *route and navbar protection*
+
+
+a ---> b ---> c
